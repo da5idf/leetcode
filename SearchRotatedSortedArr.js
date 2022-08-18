@@ -1,21 +1,22 @@
 var search = function (nums, target) {
-    let left = nums[0];
-    let right = nums[nums.length - 1];
+    let start = 0;
+    let end = nums.length - 1;
 
-    let pivot = Math.floor(nums.length / 2)
-    return helper(nums, pivot, left, right, target)
+    while (start <= end) {
+        let pivot = start + Math.floor((end - start) / 2);
+        if (nums[pivot] === target) return pivot;
+
+        else if (nums[pivot] >= nums[start]) {
+            if (target >= nums[start] && target < nums[pivot]) end = pivot - 1;
+            else start = pivot + 1
+        } else {
+            if (target <= nums[end] && target > nums[pivot]) start = pviot + 1;
+            else end = mid - 1;
+        }
+    }
+    return - 1;
 };
 
-var helper = function (nums, pivot, left, right, target) {
-    if (target === nums[pivot]) return pivot;
-
-    if (target < nums[pivot] && target < right) {
-        pivot = Math.floor((nums.length - pivot) / 2)
-    } else {
-        pivot = Math.floor(pivot / 2)
-    }
-    return helper(nums, pivot, left, right, target)
-}
 
 let nums = [4, 5, 6, 7, 0, 1, 2], target = 0
 
