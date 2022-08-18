@@ -10,8 +10,8 @@ var search = function (nums, target) {
             if (target >= nums[start] && target < nums[pivot]) end = pivot - 1;
             else start = pivot + 1
         } else {
-            if (target <= nums[end] && target > nums[pivot]) start = pviot + 1;
-            else end = mid - 1;
+            if (target <= nums[end] && target > nums[pivot]) start = pivot + 1;
+            else end = pivot - 1;
         }
     }
     return - 1;
