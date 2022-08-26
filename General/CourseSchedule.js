@@ -1,59 +1,42 @@
-class Node {
-    constructor(val) {
-        this.val = val;
-        this.next = [];
-    }
-}
-
 var canFinish = function (numCourses, prerequisites) {
 
-    let V = new Array(numCourses - 1).fill(false);
+    let requiredClassesForIdx = new Array(numCourses).fill().map(ele => []);
 
-    for (let i = 0; i < prerequisites.length; i++) {
-        let prereq = prerequisites[i];
-        let nextClass = prereq[0]
-        let reqClass = prereq[1]
-
-        if (!V[nextClass]) {
-            const nextNode = new Node(nextClass)
-            V[nextClass] = nextNode;
-        }
-        if (!V[reqClass]) {
-            const reqNode = new Node(reqClass);
-            V[reqClass] = reqNode;
-        }
+    for (let [nextClass, reqClass] of prerequisites) {
         // add the next class to the required class's next list
         // i.e. after taking reqNode, you are able to take nextNode
-        V[reqClass].next.push(V[nextClass])
+        requiredClassesForIdx[nextClass].push(reqClass)
     }
 
     for (let i = 0; i < numCourses; i++) {
-        // if V[i] === false then that course has no pre-reqs, continue
-        if (!V[i]) continue;
 
-        if (!dfs(V[i])) return false;
+        if (!requiredClassesForIdx[i].length) continue; // no prereqs for class i
+
+        if (!dfs(i, requiredClassesForIdx)) {
+            return false;
+        }
     }
     return true;
 }
 
-var dfs = function (head) {
-
-    let queue = head.next;
+var dfs = function (classNum, adjLists) {
+    let queue = [...adjLists[classNum]]
     let visited = new Set();
 
     while (queue.length) {
         let current = queue.shift();
-        visited.add(current.val);
+        visited.add(current);
 
-        // if current is the head, then we have a cycle
-        if (current.val === head.val) return false;
-        // add each next to the queue if we haven't visited that node yet.
-        let adjList = current.next;
-        adjList.forEach(node => {
-            if (!visited.has(node.val)) {
-                queue.push(node);
+        // we loop on our preReqs if classNum appears in our queue
+        if (current === classNum) return false
+
+        // add each prerec to the queue if we haven't visited that class yet.
+        let adjList = [...adjLists[current]];
+        for (let i = 0; i < adjList.length; i++) {
+            if (!visited.has(adjList[i])) {
+                queue.push(adjList[i]);
             }
-        })
+        }
     }
 
     return true

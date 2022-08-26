@@ -41,7 +41,7 @@ var insert = function (intervals, newInterval) {
 };
 
 let intervals = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
-let newInterval = [20, 30]
-// let newInterval = [5, 6]
+// let newInterval = [20, 30]
+let newInterval = [5, 6]
 
 console.log(insert(intervals, newInterval))

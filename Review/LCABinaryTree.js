@@ -1,27 +1,14 @@
-var lowestCommonAncestor = function (root, p, q) {
-    let lca;
+var lowestCommonAncestor = function (node, p, q) {
+    if (!node) return false;
+    if (node.val === p.val || node.val === q.val) return node;
 
-    const iterate = function (node) {
-        if (!node) return false;
 
-        const found = node.val === p.val || node.val === q.val;
+    let foundLeft = lowestCommonAncestor(node.left, p, q);
+    let foundRight = lowestCommonAncestor(node.right, p, q);
 
-        const foundInLeft = iterate(node.left);
-        const foundInRight = iterate(node.right);
+    if (foundRight && foundLeft) return node
+    return foundRight || foundLeft
 
-        if (foundInLeft && foundInRight
-            || found && foundInLeft
-            || found && foundInRight
-        ) {
-            lca = node;
-            return true;
-        }
-
-        return found || foundInLeft || foundInRight
-    }
-
-    iterate(root);
-    return lca;
 }
 
 // returns [{-1, 0, 1}, int]

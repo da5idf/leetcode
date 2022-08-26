@@ -80,6 +80,6 @@ var updateMatrix = function (mat) {
     return output;
 }
 
-let mat = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+let mat = [[1, 1, 1], [0, 0, 0], [0, 1, 0]]
 
 console.log(updateMatrix(mat));
