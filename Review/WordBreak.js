@@ -2,15 +2,11 @@
 var wordBreak = function (s, wordDict) {
     const wordSet = new Set(wordDict);
     const queue = [0];
-    const visited = new Array(s.length).fill(false);
     const inQueue = new Set();
 
     while (queue.length) {
         const start = queue.shift();
         inQueue.delete(start);
-        if (visited[start]) {
-            continue;
-        }
         for (let end = start + 1; end <= s.length; end++) {
             let substring = s.slice(start, end);
             if (wordSet.has(substring) && !inQueue.has(end)) {
@@ -19,7 +15,6 @@ var wordBreak = function (s, wordDict) {
                 if (end === s.length) return true;
             }
         }
-        visited[start] = true;
     }
 
     return false;
