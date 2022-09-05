@@ -1,10 +1,8 @@
 var plusOne = function (digits) {
-    let length = digits.length;
-    digits[length - 1]++;
+    let idx = digits.length - 1;
+    digits[idx]++;
 
-    let carry = digits[length - 1] === 10;
-    let idx = length - 1;
-    while (carry && idx >= 0) {
+    while (idx >= 0 && digits[idx] === 10) {
         digits[idx] = 0;
         if (idx === 0) {
             digits.unshift(1);
@@ -12,7 +10,6 @@ var plusOne = function (digits) {
         } else {
             idx--;
             digits[idx]++
-            carry = digits[idx] === 10;
         }
     }
     return digits;
