@@ -21,6 +21,19 @@ function solution(numbers, left, right) {
     return result;
 }
 
+// this passed on a different practice test
+function solution(numbers, left, right) {
+    let result = [];
+    let map = {};
+
+    for (let i = 0; i < numbers.length; i++) {
+        let target = numbers[i] / (i + 1);
+        if (target % 1 === 0 && target >= left && target <= right) result.push(true)
+        else result.push(false);
+    }
+    return result;
+}
+
 let numbers1 = [8, 5, 6, 16, 5]
 let left1 = 1
 let right1 = 3
