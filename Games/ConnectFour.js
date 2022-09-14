@@ -32,7 +32,6 @@ class ConnectFour {
         for (let row = 0; row < 8; row++) {
             let boardRow = ""
             for (let col = 0; col < 9; col++) {
-                // console.log(row, col)
                 switch (this.board[row][col].player) {
                     case 1:
                         boardRow += "1 "
