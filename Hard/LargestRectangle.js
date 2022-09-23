@@ -1,12 +1,17 @@
 /***
- * In this algorithm, we calculate rectangles backwards in a sense.
- * Specifically, we don't calculate an area until we reach an index in heights
- * where heights[i] < heights[j] and j < i (a decrease in height, but increase in idx). 
+ * In this algorithm, we don't calculate an area until we reach an index in heights
+ * where heights[i] < heights[j] and j < i (a decrease in height, but increase in idx).
+ * This is confusing at first, but is the key to the stack solution.
  * 
- * Until this point (where a decrease happens), we have been increasing in height by design.
- *      We add to our stack during this period. Each element in the stack has 2 elements:
- *      stack[i] = [leftBorder, heights[leftBorder]]
+ * As an example, take heights = [1, 3, 4, 2, 5, 2]
+ * We beging with an empty stack. This fails the while loop (stack.length).
+ * Instead, we add to our stack the element [0, 1]
+ *      this element denotes that at idx 0, we have heights[0] = 1
+ * We continue adding to our stack until, heights[i] < height of element on top of stack.
+ * We use the top of the stack because this is the element with max height up until this point.
+ * stack = [[0, 1], [1, 3], [2, 4]] and newLeft = 3
  * 
+ * Again, until this point (where a decrease happens), we have been increasing in height by design. 
  * Also, by design the first rectangle we calculate is for j = i - 1.
  * Notice how the width of the rectangle is
  *      width = i - j = i - (i - 1) = 1. 
