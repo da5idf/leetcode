@@ -12,7 +12,19 @@ var calculate = function (s) {
             inNumber ? stack[stack.length - 1] += s[i] : stack.push(s[i]);
             inNumber = true;
         }
-        else if (s[i] === "+" || s[i] === "-") {
+        else if (s[i] === "-") {
+            if (i === 0) {
+                inNumber = true;
+            }
+            else if (stack[stack.length - 1] === "(") {
+                inNumber = true;
+            }
+            else {
+                inNumber = false;
+            }
+            stack.push(s[i])
+        }
+        else if (s[i] === "+") {
             inNumber = false;
             stack.push(s[i])
         }
@@ -21,32 +33,32 @@ var calculate = function (s) {
             stack.push(s[i]);
         }
         else if (s[i] === ")") {
+            console.log(stack);
             inNumber = false;
-            let top = stack[stack.length - 1];
-            let inParenSum = 0;
-            while (top && top !== "(") {
-                const num1 = Number(stack.pop());
-                const operator = stack.pop();
-                const num2 = Number(stack.pop());
-                inParenSum += operations[operator](num1, num2);
-                top = stack[stack.length - 1];
+            let inParenSum = Number(stack.pop());
+            let operator = stack.pop();
+            while (operator !== "(") {
+                if (operator === "-" && stack[stack.length - 1] === "-") operator = stack.pop();
+                const num = Number(stack.pop());
+                // console.log(inParenSum, operator, num);
+                inParenSum = operations[operator](num, inParenSum);
+                // console.log(inParenSum, operator, num)
+                operator = stack.pop();
+                // top = stack[stack.length - 1];
             }
-            stack.pop();
             stack.push(`${inParenSum}`);
         }
     }
-
-    let result = 0;
-    while (stack.length > 1) {
-        const num1 = Number(stack.pop());
-        const operator = stack.pop();
-        console.log(operator)
-        const num2 = Number(stack.pop());
-        result += operations[operator](num1, num2);
-        top = stack[stack.length - 1];
+    // console.log(stack)
+    let result = Number(stack[0]);
+    for (let i = 1; i < stack.length - 1; i++) {
+        const operator = stack[i];
+        i++;
+        const num2 = Number(stack[i]);
+        result = operations[operator](result, num2);
     }
 
-    return result;
+    return result
 }
 /*
 var calculate = function (s) {
