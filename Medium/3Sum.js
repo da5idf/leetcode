@@ -1,3 +1,40 @@
+var threeSum = function (nums, target = 0) {
+
+    nums.sort((a, b) => a - b);
+    const triplets = []
+    console.log(nums)
+    for (let i = 0; i < nums.length - 2; i++) {
+        if (nums[i] > nums) break;
+
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+        let j = i + 1;
+        let k = nums.length - 1;
+
+        while (j < k) {
+            let sum = nums[i] + nums[j] + nums[k];
+
+            if (sum < target) {
+                j++;
+            } else if (sum > target) {
+                k--;
+            } else {
+                triplets.push([nums[i], nums[j], nums[k]])
+
+                while (nums[j] === nums[j + 1]) j++
+                while (nums[k] === nums[k - 1]) k--
+
+                j++;
+                k--
+            }
+
+        }
+    }
+    return triplets;
+}
+
+
+/*
 var threeSum = function (nums) {
 
     let set = new Set();
@@ -42,3 +79,4 @@ var twoSum = function (nums, start, target) {
 
 let nums = [-1, 0, 1, 2, -1, -4]
 console.log(threeSum(nums))
+*/

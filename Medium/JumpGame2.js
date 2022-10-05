@@ -11,20 +11,6 @@ var jump = function (nums) {
     return jumpCount
 }
 
-// my while approach
-var jump = function (nums) {
-    let jumpCount = 0, current = -1, nextIdx = 0;
-    while (nextIdx < nums.length - 1) {
-        jumpCount++;
-
-        for (let jumpDist = 0; jumpDist <= nums[current]; jumpDist++) {
-            nextIdx = Math.max(nextIdx, current + nums[current + jumpDist])
-        }
-        current = nextIdx;
-    }
-    return jumpCount
-}
-
 /* my solution
 var jump = function(nums) {
     let len = nums.length
