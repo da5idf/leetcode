@@ -56,3 +56,13 @@ class Trie {
         return ans;
     }
 }
+
+const bitTrie = new Trie()
+const nums = [3, 10, 5, 25, 2, 8];
+for (const num of nums) {
+    bitTrie.insert(num);
+}
+const MAX_INT = Math.pow(2, 31) - 1;
+const target = 25 ^ MAX_INT;
+const found = bitTrie.search(target)
+console.log(target, found);
