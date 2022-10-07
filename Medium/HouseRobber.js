@@ -1,3 +1,17 @@
+// fewest lines
+var rob = function (values, start = 0, end = values.length - 1) {
+    let maxRobbed = 0;
+    let skipHouse = 0;
+
+    for (let i = start; i <= end; i++) {
+        let temp = maxRobbed;
+        let current = values[i];
+        maxRobbed = Math.max(current + skipHouse, maxRobbed);
+        skipHouse = temp;
+    }
+}
+
+/* easier to understand
 var rob = function (values) {
     const NUM_HOUSES = values.length
     const totalRobbed = new Array(NUM_HOUSES).fill(0);
@@ -14,7 +28,7 @@ var rob = function (values) {
 
     return Math.max(...totalRobbed);
 }
-
+*/
 
 /* too many calls to the call stack
 var rob = function (values) {
