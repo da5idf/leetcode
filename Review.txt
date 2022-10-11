@@ -1,0 +1,6 @@
+Hard
+
+Medium
+    NumberOfLongestIncreasingSequences
+
+Easy
