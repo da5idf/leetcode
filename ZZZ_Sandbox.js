@@ -1,22 +1,24 @@
-var rotate = function (matrix) {
-    const ROWS = matrix.length;
-    const COLS = ROWS;
+var trap = function (height) {
+    let left = 0;
+    let right = height.length - 1;
+    let totalCaptured = 0;
+    let leftMax = height[left];
+    let rightMax = height[right];
 
-    for (let row = 0; row < Math.floor(ROWS / 2); row++) {
-        for (let col = row; col < COLS - 1 - row; col++) {
-            let prev = matrix[row][col];
-            let currentRow = row;
-            let currentCol = col;
-            for (let i = 0; i < 4; i++) {
-                let temp = matrix[currentCol][COLS - 1 - currentRow];
-                matrix[currentCol][COLS - 1 - currentRow] = prev;
-                prev = temp;
-                [currentRow, currentCol] = [currentCol, COLS - 1 - currentRow];
-            }
+    while (left < right) {
+        console.log(totalCaptured, left, right);
+        if (height[left] < height[right]) {
+            totalCaptured += leftMax - height[left];
+            left++;
+            leftMax = Math.max(leftMax, height[left])
+        } else {
+            totalCaptured += rightMax - height[right];
+            right--;
+            rightMax = Math.max(rightMax, height[right])
         }
     }
-    return matrix;
+    return totalCaptured;
 }
 
-const matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-console.log(rotate(matrix))
+const height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+console.log(trap(height))
