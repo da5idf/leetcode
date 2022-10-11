@@ -1,57 +1,22 @@
-var findMaximumXOR = function (nums) {
-    const bitTrie = new Trie()
-    for (const num of nums) {
-        bitTrie.insert(num);
-    }
+var rotate = function (matrix) {
+    const ROWS = matrix.length;
+    const COLS = ROWS;
 
-    const MAX_INT = Math.pow(2, 31) - 1;
-    let max = 0;
-    for (const num of nums) {
-        const target = num ^ MAX_INT;
-        const found = bitTrie.search(target);
-        max = Math.max(max, num ^ found);
-    }
-    return max
-}
-
-
-class Trie {
-    root = new Map();
-
-    insert(number) {
-        let node = this.root;
-        for (let index = 0; index < 31; index++) {
-            let mask = 1 << index
-            let bit = (mask & number) > 0 ? 1 : 0
-            if (!node.has(bit)) {
-                node.set(bit, new Map());
+    for (let row = 0; row < Math.floor(ROWS / 2); row++) {
+        for (let col = row; col < COLS - 1 - row; col++) {
+            let prev = matrix[row][col];
+            let currentRow = row;
+            let currentCol = col;
+            for (let i = 0; i < 4; i++) {
+                let temp = matrix[currentCol][COLS - 1 - currentRow];
+                matrix[currentCol][COLS - 1 - currentRow] = prev;
+                prev = temp;
+                [currentRow, currentCol] = [currentCol, COLS - 1 - currentRow];
             }
-            node = node.get(bit);
         }
     }
-
-    search(number) {
-        let node = this.root;
-        let ans = 0;
-        for (let index = 0; index < 31; index++) {
-            let mask = 1 << index;
-            let bit = (mask & number) > 0 ? 1 : 0
-            if (!node.has(bit)) {
-                bit = bit === 0 ? 1 : 0
-            }
-            node = node.get(bit);
-            if (bit) ans += mask;
-        }
-        return ans;
-    }
+    return matrix;
 }
 
-const bitTrie = new Trie()
-const nums = [3, 10, 5, 25, 2, 8];
-for (const num of nums) {
-    bitTrie.insert(num);
-}
-const MAX_INT = Math.pow(2, 31) - 1;
-const target = 25 ^ MAX_INT;
-const found = bitTrie.search(target)
-console.log(target, found);
+const matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+console.log(rotate(matrix))
