@@ -25,5 +25,6 @@ var missingNumber = function(nums) {
     
     return totalSum - sum;
 };
-
 */
+
+console.log(missingNumber([1, 1, 1, 6, 0]))
