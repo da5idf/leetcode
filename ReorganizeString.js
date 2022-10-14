@@ -1,4 +1,33 @@
 var reorganizeString = function (s) {
+    if (s.length === 1) return s;
+
+    const letterCountMap = {};
+
+    for (const char of s) {
+        letterCountMap[char] = letterCountMap[char] + 1 || 1
+    }
+
+    const sortedLetters = Object.keys(letterCountMap).sort((a, b) => letterCountMap[b] - letterCountMap[a])
+    const maxFreq = letterCountMap[sortedLetters[0]];
+    if (s.length < 2 * maxFreq - 1) return '';
+
+
+    let newString = new Array(s.length);
+    let insertIdx = 0;
+    for (let i = 0; i < sortedLetters.length; i++) {
+        const currChar = sortedLetters[i];
+        const letterCount = letterCountMap[currChar];
+        for (let j = 0; j < letterCount; j++) {
+            newString[insertIdx] = currChar;
+            insertIdx += 2;
+            if (insertIdx > newString.length - 1) insertIdx = 1;
+        }
+    }
+    return newString.join("")
+}
+
+/*
+var reorganizeString = function (s) {
     const letterCount = s.length;
 
     if (letterCount === 1) return s;
@@ -43,37 +72,7 @@ var reorganizeString = function (s) {
         }
     }
 }
+*/
 
-const s = "aabbcc"
+const s = "aaabbbcd"
 console.log(reorganizeString(s));
-
-// while (newString.length < letterCount) {
-//     console.log(newString)
-//     if (letterCountMap[i][1] > 0) {
-//         newString += letterCountMap[i][0]
-//         letterCountMap[i][1]--;
-//     }
-//     if (i !== priorityIdx && letterCountMap[priorityIdx][1] > 0) {
-//         i = priorityIdx
-//     } else {
-//         while (letterCountMap[priorityIdx][1] === 0) {
-//             priorityIdx++;
-//         }
-//         i = priorityIdx + 1;
-//     }
-// }
-
-// let newStringArr = new Array(letterCount);
-// letterCountMap.sort((a, b) => b[1] - a[1]);
-// let letter = 0;
-// let i = 0;
-// let startIdx = 0;
-// while (letter < 26) {
-//     while (letterCountMap[letter][1] > 0) {
-//         newStringArr[i] = letterCountMap[letter][0]
-//         letterCountMap[letter][1]--
-//         i += maxFrequency
-//     }
-//     if (i >= letterCount) i = startIdx + 1;
-//     letter++
-// }
