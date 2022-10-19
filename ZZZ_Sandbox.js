@@ -1,9 +1,10 @@
-let obj = {
-    '1': 10,
-    '2': 20,
-    '3': 30
-}
+const {
+    MinPriorityQueue,
+} = require('@datastructures-js/priority-queue');
 
-for (const node in obj) {
-    console.log(node);
-}
+const pq = new MinPriorityQueue(a => a[0]);
+
+pq.enqueue([5, 9]);
+pq.enqueue([0, 0]);
+
+console.log(pq._heap);
