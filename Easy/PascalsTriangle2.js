@@ -1,10 +1,11 @@
 // combinatorial method
-var getRow = function (rowIndex) {
-    let row = []
-
-    for (let i = 0; i <= rowIndex + 1; i++) {
-    }
-}
+var getRow = function (rowIdx) {
+    var row = new Array(rowIdx + 1)
+    row[0] = row[rowIdx] = 1
+    for (i = 1, up = rowIdx; i < rowIdx; i++, up--)
+        row[i] = row[i - 1] * up / i
+    return row
+};
 
 /* original solution
 var getRow = function (rowIndex) {
