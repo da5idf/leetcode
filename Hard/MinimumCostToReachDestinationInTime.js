@@ -1,46 +1,36 @@
+const { MinPriorityQueue } = require("@datastructures-js/priority-queue");
+
 var minCost = function (maxTime, edges, passingFees) {
     const map = {};
     for (const [start, end, time] of edges) {
         if (!map[start]) map[start] = {};
         if (!map[end]) map[end] = {};
 
-        map[start][end] = time
-        map[end][start] = time
+        map[start][end] = Math.min(map[start][end] || 1001, time)
+        map[end][start] = Math.min(map[end][start] || 1001, time)
     }
     // console.log(map);
     const nodeCount = passingFees.length;
-    let curNode = nodeCount - 1;
-    const queue = [[[`${curNode}`], 0]];
-    const paths = []
-    while (queue.length) {
-        // console.log("queue", queue)
-        const [curPath, elapsed] = queue.shift();
-        // console.log("curPath", curPath)
-        const curNodeVal = curPath[curPath.length - 1];
-        const curNode = map[curNodeVal];
-        // console.log("curNode", curNode)
-        for (const nextNode in curNode) {
-            const pathTime = curNode[nextNode];
-            // console.log("pathTime", nextNode, pathTime)
-            // console.log(elapsed + pathTime <= maxTime)
-            if (elapsed + pathTime <= maxTime) {
-                // console.log(curNodeVal, curPath)
-                if (nextNode === '0') {
-                    paths.push([...curPath, nextNode]);
-                } else if (curPath.indexOf(nextNode) === -1) {
-                    queue.push([[...curPath, nextNode], elapsed + pathTime])
-                }
-            }
+    // const costMap = new Array(nodeCount).fill(Infinity)
+    const timeMap = new Array(nodeCount).fill(Infinity)
+    let minHeap = new MinPriorityQueue({ priority: x => x[0] });
+    // minHeap[i] = [cost, elapsedTime, city]
+    minHeap.enqueue([passingFees[0], 0, 0])
+    while (!minHeap.isEmpty()) {
+        const [cost, elapsedTime, city] = minHeap.dequeue().element;
+
+        if (city == nodeCount - 1) return cost;
+        if (timeMap[city] < elapsedTime) continue;
+
+        timeMap[city] = elapsedTime;
+
+        for (const nextCity in map[city]) {
+            let nextTime = map[city][nextCity]
+            if (elapsedTime + nextTime > maxTime) continue;
+            minHeap.enqueue([cost + passingFees[nextCity], elapsedTime + nextTime, nextCity])
         }
-        // console.log("***")
     }
-    // console.log(paths);
-    let minCost = 1000 * 1000 + 1
-    paths.forEach(path => {
-        let cost = path.reduce((prev, cur) => prev + passingFees[cur], 0)
-        minCost = Math.min(minCost, cost)
-    })
-    return minCost
+    return -1
 };
 
 
