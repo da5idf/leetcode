@@ -3,6 +3,8 @@ Easy/
 
 Medium/
     K pairs with smallest sum
+    Next permutation
+    Permutations 2
 
 Hard/
     Kth Smallest Product --> I don't understand binary search solution
