@@ -1,1 +1,8 @@
-Easy/Pascals2 -- great insight into generating combinatorials as well.
+Easy/
+    Pascals2 -- great insight into generating combinatorials as well.
+
+Medium/
+    K pairs with smallest sum
+
+Hard/
+    Kth Smallest Product --> I don't understand binary search solution
