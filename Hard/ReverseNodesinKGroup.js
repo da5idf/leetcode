@@ -1,35 +1,37 @@
 var reverseKGroup = function (head, k) {
-
-}
-
-var swapNodes = function (head) {
-    if (!head || !head.next) return head;
+    if (k === 1) return head;
 
     let dummy = new ListNode(0, head);
     let prev = dummy;
-    let current = head;
-    while (current && current.next) {
-        let next = current.next.next;
+    let current = head.next;
+    while (current) {
 
-        let swap = current.next;
-        prev.next = swap;
-        swap.next = current;
-        current.next = next;
-        prev = current;
-        current = next;
+        let segmentCount = 0;
+        let prevSegmentTail = prev;
+        for (let i = 0; i < k && current; i++) {
+            prev = current;
+            current = current.next;
+            segmentCount++;
+        }
+
+        if (segmentCount === k) {
+            [prev, current] = reverseSegment(prevSegmentTail, prevSegmentTail.next, k)
+        }
     }
     return dummy.next;
 }
 
-var reverseList = function (head) {
+var reverseSegment = function (prev, current, count) {
+    let head = prev;
+    let tail = current;
+    for (let i = 0; i < count && current; i++) {
+        let next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+    }
+    head.next = prev;
+    tail.next = current;
 
-    if (!head) return null;
-
-    if (!head.next) return head;
-
-    newHead = reverseList(head.next);
-    head.next.next = head;
-    head.next = null;
-
-    return newHead;
-};
+    return [tail, current]
+}
