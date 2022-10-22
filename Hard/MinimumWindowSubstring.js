@@ -45,28 +45,3 @@ var minWindow = function (s, t) {
 
 let s = "ab";
 let t = "b"
-
-// while (start < s.length) {
-//     const characterAtEnd = s[end];
-
-//     requiredLetterCounts[characterAtEnd]--
-//     if (requiredLetterCounts[characterAtEnd] === 0) requiredLetters.delete(characterAtEnd)
-
-//     if (requiredLetters.size === 0) {
-//         if (end > s.length - 1) end = s.length - 1
-//         const substringLength = end - start + 1;
-//         if (substringLength < minLength) {
-//             minLength = substringLength;
-//             optimalStart = start;
-//             optimalEnd = end
-//         }
-
-//         const characterAtStart = s[start];
-//         requiredLetterCounts[characterAtStart]++
-//         if (requiredLetterCounts[characterAtStart] > 0) requiredLetters.add(characterAtStart)
-//         start++
-//     } else if (end > s.length - 1) {
-//         return s.substring(optimalStart, optimalEnd + 1);
-//     }
-//     end++;
-// }
