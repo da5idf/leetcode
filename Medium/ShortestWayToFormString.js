@@ -19,7 +19,7 @@ var shortestWay = function (source, target) {
 };
 
 
-// my solution
+/* my solution
 var shortestWay = function (source, target) {
     const letters = new Array(26).fill(false);
     for (let i = 0; i < source.length; i++) {
@@ -45,3 +45,4 @@ var shortestWay = function (source, target) {
     }
     return targetIdx === target.length ? count;
 };
+*/
