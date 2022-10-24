@@ -1,24 +1,28 @@
-function swap(list, iA, iB) {
-    let temp = list[iA];
-    list[iA] = list[iB];
-    list[iB] = temp;
-}
-
-function partition(list, low, high) {
-    // Pivot is the last element of the list.
-    let x = list[high];
-    let i = low - 1;
-    for (let j = low; j < high; j++) {
-        if (list[j] <= x) {
-            i++;
-            swap(list, i, j);
-        }
+var check = function (str) {
+    // const usedChars = new Array(26).fill(false);
+    let bit = str.charCodeAt(0) - 97
+    for (let i = 1; i < str.length; i++) {
+        let charCode = str.charCodeAt(i) - 97;
+        // if (usedChars[charCode]) return false;
+        // usedChars[charCode] = true;
+        bit = bit & charCode;
     }
-    swap(list, (i + 1), high);
-    console.log(list, i + 1);
-    return i + 1;
+    return bit === 0;
 }
 
-let list = [4, 3, 1, 7, 8, 5, 4, 2, 1]
-partition(list, 0, 8)
+function isUnique(str) {
+    let bits = 0 | 0;
+
+    for (const char of str) {
+        const index = char.charCodeAt(0) - 97;
+
+        if (bits & (1 << index)) return false;
+        bits |= (1 << index);
+    }
+
+    return true;
+}
+
+let str = "abc"
+console.log(isUnique(str))
 // console.log(list)
