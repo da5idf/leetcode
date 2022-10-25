@@ -1,5 +1,4 @@
 var maxLength = function (arr) {
-    let maxLength = 0;
 
     var dfs = function (str, start) {
 
