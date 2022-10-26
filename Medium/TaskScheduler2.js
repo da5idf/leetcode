@@ -1,3 +1,17 @@
+// more concise version of my code
+var taskSchedulerII = function (tasks, space) {
+    const lastTaskMap = {}
+    let curDay = 0;
+    for (const task of tasks) {
+        if (lastTaskMap[task] >= 0)
+            lastTaskMap[task] = (curDay = Math.max(curDay, lastTaskMap[task] + space) + 1)
+        else
+            lastTaskMap[task] = ++curDay
+    }
+    return curDay;
+}
+
+
 var taskSchedulerII = function (tasks, space) {
     const lastTaskMap = {}
     let curDay = 0;
