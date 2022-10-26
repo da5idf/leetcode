@@ -5,6 +5,7 @@ Medium/
     K pairs with smallest sum
     Next permutation
     Permutations 2
+    SubarraySumEqualK
 
 Hard/
     Kth Smallest Product --> I don't understand binary search solution
