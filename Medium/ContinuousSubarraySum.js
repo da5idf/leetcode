@@ -1,15 +1,16 @@
 var checkSubarraySum = function (nums, k) {
-    let start = 0;
-    let end = 1;
-    let runningSum = nums[0] + nums[1];
-    while (end < nums.length) {
-        if (runningSum % k === 0) return true;
+    const remainders = new Set();
+    let prefixSum = 0;
+    let runningSum = 0;
+    for (const num of nums) {
+        runningSum = (runningSum + num) % k;
 
-        if (start - end + 1 < 2) {
-            end++;
-            runningSum += nums[end];
-        }
+        if (remainders.has(runningSum)) return true;
 
-        // if (k % ru)
+        remainders.add(prefixSum);
+
+        prefixSum = runningSum;
     }
+
+    return false;
 };
