@@ -15,6 +15,7 @@ var maximumSumScore = function (nums) {
     return max;
 };
 
+/*
 var maximumSumScore = function (nums) {
 
     let leftSum = [];
@@ -32,3 +33,4 @@ var maximumSumScore = function (nums) {
 
     return max;
 };
+*/

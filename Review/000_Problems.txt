@@ -5,7 +5,10 @@ Medium/
     K pairs with smallest sum
     Next permutation
     Permutations 2
-    SubarraySumEqualK
+    Arrary Sum Problems
+        Maximum sum score
+        Sub array sum to K
+        subarry sum multiple of k
 
 Hard/
     Kth Smallest Product --> I don't understand binary search solution
