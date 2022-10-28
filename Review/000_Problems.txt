@@ -1,5 +1,6 @@
 Easy/
     Pascals2 -- great insight into generating combinatorials as well.
+    Next Greater Element
 
 Medium/
     K pairs with smallest sum
