@@ -9,6 +9,7 @@ Medium/
         Maximum sum score
         Sub array sum to K
         subarry sum multiple of k
+    NextClosestTime
 
 Hard/
     Kth Smallest Product --> I don't understand binary search solution
