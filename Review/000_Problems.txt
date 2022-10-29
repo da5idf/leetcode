@@ -1,6 +1,8 @@
 Easy/
     Pascals2 -- great insight into generating combinatorials as well.
     Next Greater Element
+    Valid Palindrome
+    Buy and Sell Stock
 
 Medium/
     K pairs with smallest sum
@@ -11,6 +13,8 @@ Medium/
         Sub array sum to K
         subarry sum multiple of k
     NextClosestTime
+    Longest substring w/o repeating chars
+    Longest Repeating character replacement
 
 Hard/
     Kth Smallest Product --> I don't understand binary search solution
