@@ -1,3 +1,7 @@
+Concepts
+    Prim's Algorithm
+    Dijkstra's Algorithm
+
 Easy/
     Pascals2 -- great insight into generating combinatorials as well.
     Next Greater Element
@@ -15,6 +19,15 @@ Medium/
     NextClosestTime
     Longest substring w/o repeating chars
     Longest Repeating character replacement
+    Sum of Two Integers (bit manipulation)
+    Frequency of the most frequent element
 
 Hard/
     Kth Smallest Product --> I don't understand binary search solution
+
+Open Problems
+    https://leetcode.com/problems/find-k-th-smallest-pair-distance/solution/
+    https://leetcode.com/discuss/interview-question/1482150/rotatedrectsum-codesignal-quora-two-sigma-oa
+    https://leetcode.com/problems/two-city-scheduling/
+    https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
+    

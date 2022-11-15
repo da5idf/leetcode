@@ -5,6 +5,21 @@ the key might get long pressed, and the character will be typed 1 or more times.
 You examine the typed characters of the keyboard. Return True if it is possible that 
 it was your friends name, with some characters (possibly none) being long pressed.
 */
+var isLongPressedName = function (name, typed) {
+    let nameIdx = 0;
+    for (let typeIdx = 0; typeIdx < typed.length; typeIdx++) {
+        if (typed[typeIdx] === name[nameIdx]) {
+            nameIdx++;
+        } else if (typed[typeIdx] === name[nameIdx - 1]) {
+            continue;
+        } else {
+            return false;
+        }
+    }
+
+    return nameIdx === name.length;
+};
+
 
 var isLongPressedName = function (name, typed) {
     let nameIdx = 0;

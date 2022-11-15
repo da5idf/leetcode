@@ -1,0 +1,48 @@
+Angular vs. React vs. Vue
+
+Library vs. framework
+    Libary - collection of reusable code to solve problems
+    Framework - have opinions, application structure, app startup, component interaction
+    Both speed up the development process
+
+Thinking about the DOM or Virtual DOM
+    In a traditional DOM, the DOM tree will find every node interested in an event and update it. This results in a computationally heavy process that requires analyzing and updating an entire tree structure at every change of state.
+
+    A Virtual DOM (React) creates a Virtual Tree. As a result, the Virtual DOM can calculate how the DOM should look as state changes without recreating all of the DOM nodes.
+        Advantages:
+            Updating the DOM is quicker
+            JSX is more readable
+            Data binding allows for more dynamic web and mobile applications (React Native)
+            Prompt rendering-- Virtual DOMs minimize the number of operations and accelerate the process of upadating single-page information in real-time.
+
+Data binding 
+    Angular uses bi-directional
+    React uses uni-directional
+
+Angular (Framework)
+    By Google
+    Oldest of the three
+    High learning curve
+        Directives, Modules, Decorators, Components, Services,
+        Dependency Injection, Pipes, Templates... lots of overhead
+
+React (Library)
+    By Facebook
+    Building interactive user-interfaces
+    Most popular of the three
+
+Vue (framework)
+    Ex-google employees
+    About as easy to learn as React
+
+Stability 
+    React community is averse to pushing huge updates that depricate
+    old APIs. In contrast, Angular has bi-anual updates which makes you
+    need to update your APIs at least every year.
+
+Think about tech talent
+    Angular is losing popularity, React is super popular so finding 
+    talent is maybe eaiser with React or even Vue
+
+Size
+    Angular is 2x as big as React and Vue
