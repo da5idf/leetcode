@@ -30,4 +30,5 @@ Open Problems
     https://leetcode.com/discuss/interview-question/1482150/rotatedrectsum-codesignal-quora-two-sigma-oa
     https://leetcode.com/problems/two-city-scheduling/
     https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
+    https://leetcode.com/problems/count-fertile-pyramids-in-a-land/
     
