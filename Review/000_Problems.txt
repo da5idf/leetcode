@@ -26,6 +26,7 @@ Hard/
     Kth Smallest Product --> I don't understand binary search solution
 
 Open Problems
+    https://leetcode.com/problems/erect-the-fence/
     https://leetcode.com/problems/find-k-th-smallest-pair-distance/solution/
     https://leetcode.com/discuss/interview-question/1482150/rotatedrectsum-codesignal-quora-two-sigma-oa
     https://leetcode.com/problems/two-city-scheduling/
