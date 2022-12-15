@@ -1,3 +1,17 @@
+// updated on 12/13
+// I find this approach much more intuitive than the others
+var rob = function (values) {
+    for (let i = 1; i < values.length; i++) {
+        const prev = values[i - 1];
+        const prevPrev = values[i - 2] || 0;
+        const cur = values[i];
+
+        values[i] = Math.max(prev, prevPrev + cur)
+    }
+
+    return values[values.length - 1]
+}
+
 // fewest lines
 var rob = function (values, start = 0, end = values.length - 1) {
     let maxRobbed = 0;
