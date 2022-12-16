@@ -22,6 +22,13 @@ Medium/
     Sum of Two Integers (bit manipulation)
     Frequency of the most frequent element
 
+    [ 
+      Longest Common Subsequence
+      Longest Palindrome Subsequence, https://en.wikipedia.org/wiki/Longest_palindromic_substring#Manacher's_algorithm
+      Longest Palindrome Substring, 
+      Delete Operation for two Strings
+    ]
+
 Hard/
     Kth Smallest Product --> I don't understand binary search solution
 
