@@ -9,11 +9,9 @@ Easy/
     Buy and Sell Stock
 
 Medium/
-    K pairs with smallest sum
     Next permutation
     Permutations 2
     Arrary Sum Problems
-        Maximum sum score
         Sub array sum to K
         subarry sum multiple of k
     NextClosestTime
