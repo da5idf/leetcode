@@ -6,7 +6,6 @@ Easy/
     Pascals2 -- great insight into generating combinatorials as well.
     Next Greater Element
     Valid Palindrome
-    Buy and Sell Stock
 
 Medium/
     Next permutation
@@ -19,6 +18,7 @@ Medium/
     Longest Repeating character replacement
     Sum of Two Integers (bit manipulation)
     Frequency of the most frequent element
+    Buy and Sell stock with cooldown
 
     [ 
       Longest Common Subsequence
