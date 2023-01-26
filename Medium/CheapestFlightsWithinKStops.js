@@ -1,3 +1,28 @@
+// updated solution
+var findCheapestPrice = function (n, flights, src, dst, k) {
+    const flightMap = new Array(n).fill().map(() => []);
+    for (const [from, to, price] of flights) {
+        flightMap[from].push([to, price]);
+    }
+
+    const minQueue = new MinPriorityQueue({ priority: x => x[2] });
+    minQueue.enqueue([0, src, 0]);
+    const stopsToVisit = new Array(n).fill(undefined);
+    while (minQueue.size() !== 0) {
+        const [stops, node, price] = minQueue.dequeue().element;
+        stopsToVisit[node] = stops;
+        if (node === dst) return price;
+        if (stops > k) continue;
+
+        for (const [to, nextPrice] of flightMap[node]) {
+            if (stopsToVisit[to] !== undefined && stopsToVisit[to] <= stops) continue;
+            minQueue.enqueue([stops + 1, to, price + nextPrice])
+        }
+    }
+    return -1
+};
+
+/*
 var findCheapestPrice = function (n, flights, src, dst, k) {
     const flightMap = {};
     for (const [from, to, cost] of flights) {
@@ -25,3 +50,4 @@ var findCheapestPrice = function (n, flights, src, dst, k) {
     }
     return -1
 };
+*/
