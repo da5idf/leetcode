@@ -1,6 +1,13 @@
 Concepts
     Prim's Algorithm
     Dijkstra's Algorithm
+    Binary Search 
+        Koko eating bananas
+        Minimum number of days to make m bouquets
+        Magnetic force between two balls
+        Split array largest sum
+        Divide chocolate
+        Cutting ribbons
 
 Easy/
     Pascals2 -- great insight into generating combinatorials as well.
