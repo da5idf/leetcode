@@ -1,3 +1,22 @@
+// updated front to back solution 5/26/2023
+// We initialize furthestIdx to 0
+// at each step we check to see if we can reach
+// the current idx i.e. i < furthestIdx.
+// If we are able to reach idx i, then we can also
+// reach any idx j s.t. j <= i + nums[i]
+// if we reach the end of the loop it means 
+// furthestIdx >= nums.length - 1 so we return true
+var canJump = function (nums) {
+    let furthestIdx = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        if (i > furthestIdx) return false;
+
+        furthestIdx = Math.max(furthestIdx, i + nums[i])
+    }
+    return true;
+}
+
 var canJump = function (nums) {
     let farthestIdx = nums.length - 1;
     for (let i = nums.length - 1; i >= 0; i--) {
