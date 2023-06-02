@@ -2,12 +2,12 @@ var MyHashSet = function () {
     this.keyRange = 769;
     this.buckets = new Array(this.keyRange);
     for (let i = 0; i < this.keyRange; i++) {
-        this.buckets[i] = new BST();
+        this.buckets[i] = new Bucket();
     }
-};
 
-MyHashSet.prototype.hash = function (key) {
-    return key % this.keyRange;
+    this.hash = function (key) {
+        return key % this.keyRange;
+    }
 };
 
 /** 
@@ -34,7 +34,7 @@ MyHashSet.prototype.remove = function (key) {
  */
 MyHashSet.prototype.contains = function (key) {
     const bucketIdx = this.hash(key);
-    this.buckets[bucketIdx].contains(key);
+    return this.buckets[bucketIdx].contains(key)
 };
 
 class BST {
@@ -42,47 +42,87 @@ class BST {
         this.root = null;
     }
 
-    insert(val) {
-        if (this.root === null) this.root = new Node(val);
-        else {
-            let node = this.root;
-            let prev = node;
-            while (node) {
-                prev = node;
-                if (val > node.val) node = node.right;
-                else node = node.left;
+    insertBST(root, val) {
+        if (!root) return new Node(val);
+
+        if (val > root.val) root.right = this.insertBST(root.right, val);
+        else if (val < root.val) root.left = this.insertBST(root.left, val);
+        else return root; // skip insertion
+
+        return root;
+    }
+
+
+
+    deleteNode(root, key) {
+        const successor = (node) => {
+            node = node.right;
+            while (node.left) {
+                node = node.left;
             }
-            if (val > prev.val) prev.right = val;
-            else prev.left = val;
+            return node.val;
+        };
+
+        const predecessor = (node) => {
+            node = node.left;
+            while (node.right) {
+                node = node.right;
+            }
+            return node.val;
+        };
+        if (!root) {
+            return null;
         }
+        if (root.val < key) {
+            root.right = this.deleteNode(root.right, key);
+        } else if (root.val > key) {
+            root.left = this.deleteNode(root.left, key);
+        } else if (root.left) {
+            root.val = predecessor(root);
+            root.left = this.deleteNode(root.left, root.val);
+        } else if (root.right) {
+            root.val = successor(root);
+            root.right = this.deleteNode(root.right, root.val);
+        } else {
+            root = null;
+        }
+        return root;
+    };
+
+    searchBST(root, val) {
+        if (!root) return false
+        else if (root.val === val) return true;
+
+        else if (val > root.val) return this.searchBST(root.right, val);
+        else return this.searchBST(root.left, val)
+
+    }
+}
+
+
+class Bucket {
+    constructor() {
+        this.tree = new BST();
     }
 
-    delete(val) {
-        let node = this.root;
-        let prev = null;
-        while (node) {
-            if (node.val === val) break;
-            prev = node;
-            if (val > node.val) node = node.right;
-            else node = node.left;
-        }
-
+    insert(key) {
+        this.tree.root = this.tree.insertBST(this.tree.root, key)
     }
 
-    contains(val) {
-        let node = this.root;
-        while (node) {
-            if (node.val === val) return true;
-            if (val > node.val) node = node.right;
-            else node = node.left;
-        }
-        return false;
+    contains(key) {
+        // const node = this.tree.searchBST(this.tree.root, key)
+        // return node !== null && node !== undefined;
+        return this.tree.searchBST(this.tree.root, key)
+    }
+
+    delete(key) {
+        this.tree.root = this.tree.deleteNode(this.tree.root, key);
     }
 }
 
 class Node {
     constructor(val) {
-        this.val = val || null;
+        this.val = val;
         this.left = null;
         this.right = null;
     }
